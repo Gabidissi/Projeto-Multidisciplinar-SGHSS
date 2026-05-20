@@ -23,7 +23,7 @@ public class Consulta {
     public void setId(Long id) { this.id = id; }
     public Long getPacienteId() { return pacienteId; }
     public void setPacienteId(Long pacienteId) { this.pacienteId = pacienteId; }
-    public Long getProfissionalId() { return profesionalId; }
+    public Long getProfissionalId() { return profissionalId; }
     public void setProfissionalId(Long profissionalId) { this.profissionalId = profissionalId; }
     public LocalDateTime getDataHora() { return dataHora; }
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
