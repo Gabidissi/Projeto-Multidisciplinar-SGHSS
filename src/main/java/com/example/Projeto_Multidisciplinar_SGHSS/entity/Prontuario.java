@@ -11,12 +11,16 @@ public class Prontuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "paciente_id")
     private Long pacienteId;
+
+    @Column(name = "data_registro")
     private LocalDateTime dataRegistro;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "evolucao_clinica", length = 2000)
     private String evolucaoClinica;
 
+    @Column(name = "diagnostico_cid")
     private String diagnosticoCID;
 
     // Getters e Setters

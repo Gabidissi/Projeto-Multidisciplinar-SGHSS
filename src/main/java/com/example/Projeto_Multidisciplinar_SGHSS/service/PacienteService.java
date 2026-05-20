@@ -30,7 +30,7 @@ public class PacienteService {
         LogAuditoria log = new LogAuditoria();
         log.setTxUsuario("MEDICO_SISTEMA"); // Simulação do contexto do usuário autenticado
         log.setTxOperacao("CREATE_PACIENTE");
-        log.setDtTimestamp(LocalDateTime.now());
+        log.setDataHoraOperacao(LocalDateTime.now());
         log.setIdRegistroAfetado(salvo.getId());
         logRepository.save(log);
 

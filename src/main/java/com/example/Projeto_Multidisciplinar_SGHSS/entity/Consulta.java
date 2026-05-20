@@ -1,5 +1,6 @@
 package com.example.Projeto_Multidisciplinar_SGHSS.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -11,11 +12,22 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "paciente_id")
     private Long pacienteId;
+
+    @Column(name = "profissional_id")
     private Long profissionalId;
+
+    @Column(name = "data_hora")
     private LocalDateTime dataHora;
+
     private String status;
-    private Boolean eTelemedicina;
+
+    @JsonProperty("eTelemedicina") // Força o Spring a entender o padrão exato enviado no JSON
+    @Column(name = "e_telemedicina")
+    private Boolean telemedicina;
+
+    @Column(name = "url_sala_virtual")
     private String urlSalaVirtual;
 
     // Getters e Setters
@@ -29,8 +41,8 @@ public class Consulta {
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
-    public Boolean getETelemedicina() { return eTelemedicina; }
-    public void setETelemedicina(Boolean eTelemedicina) { this.eTelemedicina = eTelemedicina; }
+    public Boolean getTelemedicina() { return telemedicina; }
+    public void setTelemedicina(Boolean telemedicina) { this.telemedicina = telemedicina; }
     public String getUrlSalaVirtual() { return urlSalaVirtual; }
     public void setUrlSalaVirtual(String urlSalaVirtual) { this.urlSalaVirtual = urlSalaVirtual; }
 }

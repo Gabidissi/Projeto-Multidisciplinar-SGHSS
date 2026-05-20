@@ -2,8 +2,10 @@
 
 Este repositório contém o código-fonte do Produto Mínimo Viável (MVP) do SGHSS, uma API RESTful de alta criticidade desenvolvida para a unificação e a centralização de registros clínicos dispersos na rede VidaPlus (que integra hospitais, clínicas de bairro, laboratórios e equipes de home care).
 
-O projeto foi estruturado sob os pilares da Engenharia de Software moderna, utilizando Java 17 e Spring Boot 3.x, atendendo de forma estrita aos critérios de avaliação da trilha de Back-end do Projeto Multidisciplinar (UNINTER).
+O projeto foi estruturado sob os pilares da Engenharia de Software moderna, utilizando Java 17 e Spring Boot 3.x, para aos critérios de avaliação da trilha de Back-end da disciplina Projeto Multidisciplinar.
 
+**ALuna:** Ana Gabriela Brasil Fraiz
+**RU:** 4877350
 ---
 
 ## Funcionalidades Principais (Eixos Tecnológicos)

@@ -16,8 +16,7 @@ public class ConsultaService {
     public Consulta agendarConsulta(Consulta consulta) {
         consulta.setStatus("AGENDADA");
 
-        // Regra de Negócio Automática de Telemedicina (Eixo Exigido no Roteiro)
-        if (Boolean.TRUE.equals(consulta.getETelemedicina())) {
+        if (Boolean.TRUE.equals(consulta.getTelemedicina())) {
             String tokenSala = UUID.randomUUID().toString().substring(0, 8);
             consulta.setUrlSalaVirtual("https://telemed.vidaplus.com.br/sala/v1-" + tokenSala);
         } else {

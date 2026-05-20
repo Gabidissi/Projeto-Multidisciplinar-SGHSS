@@ -10,9 +10,17 @@ public class LogAuditoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "tx_usuario")
     private String txUsuario;
+
+    @Column(name = "tx_operacao")
     private String txOperacao;
-    private LocalDateTime dtTimestamp;
+
+    @Column(name = "data_hora_operacao")
+    private LocalDateTime dataHoraOperacao;
+
+    @Column(name = "id_registro_afetado")
     private Long idRegistroAfetado;
 
     // Getters e Setters
@@ -22,8 +30,8 @@ public class LogAuditoria {
     public void setTxUsuario(String txUsuario) { this.txUsuario = txUsuario; }
     public String getTxOperacao() { return txOperacao; }
     public void setTxOperacao(String txOperacao) { this.txOperacao = txOperacao; }
-    public LocalDateTime getDtTimestamp() { return dtTimestamp; }
-    public void setDtTimestamp(LocalDateTime dtTimestamp) { this.dtTimestamp = dtTimestamp; }
+    public LocalDateTime getDataHoraOperacao() { return dataHoraOperacao; }
+    public void setDataHoraOperacao(LocalDateTime dataHoraOperacao) { this.dataHoraOperacao = dataHoraOperacao; }
     public Long getIdRegistroAfetado() { return idRegistroAfetado; }
     public void setIdRegistroAfetado(Long idRegistroAfetado) { this.idRegistroAfetado = idRegistroAfetado; }
 }

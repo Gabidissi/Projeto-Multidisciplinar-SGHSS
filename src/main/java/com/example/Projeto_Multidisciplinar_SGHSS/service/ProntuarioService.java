@@ -22,11 +22,10 @@ public class ProntuarioService {
         prontuario.setDataRegistro(LocalDateTime.now());
         Prontuario salvo = prontuarioRepository.save(prontuario);
 
-        // RNF002 (Rastreabilidade LGPD) - Registro síncrono obrigatório para logs clínicos sensíveis
         LogAuditoria log = new LogAuditoria();
         log.setTxUsuario("MEDICO_AUTENTICADO");
         log.setTxOperacao("READ_WRITE_PRONTUARIO");
-        log.setDtTimestamp(LocalDateTime.now());
+        log.setDataHoraOperacao(LocalDateTime.now());
         log.setIdRegistroAfetado(salvo.getId());
         logRepository.save(log);
 
@@ -34,16 +33,14 @@ public class ProntuarioService {
     }
 
     public List<Prontuario> buscarHistoricoPorPaciente(Long pacienteId) {
-        // Gera log de auditoria também para operações de consulta/leitura de dados sensíveis (Rigor LGPD)
         LogAuditoria log = new LogAuditoria();
         log.setTxUsuario("MEDICO_AUTENTICADO");
         log.setTxOperacao("READ_HISTORICO_CLINICO");
-        log.setDtTimestamp(LocalDateTime.now());
+        log.setDataHoraOperacao(LocalDateTime.now());
         log.setIdRegistroAfetado(pacienteId);
         logRepository.save(log);
 
         return prontuarioRepository.findAll().stream()
-                .filter(p -> p.getPacienteId().equals(pacienteId))
-                .toList();
+                .filter(p -> p.getPacienteId().equals(pacienteId)).toList();
     }
 }
