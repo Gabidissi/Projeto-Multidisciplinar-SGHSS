@@ -12,7 +12,7 @@ public class Paciente {
     private Long id;
 
     private String nome;
-    private String cpfCriptografado; // Atributo em estrita conformidade com o RNF001 (LGPD)
+    private String cpfCriptografado; // RNF001 - Requisito da LGPD: CPF gravado em Base64 para não expor dado sensível
     private LocalDate dataNascimento;
     private String telefone;
 

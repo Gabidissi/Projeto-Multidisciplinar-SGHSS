@@ -20,12 +20,12 @@ public class AuthController {
     public ResponseEntity<Map<String, String>> login(@RequestBody LoginRequest loginRequest) {
         Map<String, String> resposta = new HashMap<>();
 
-        // Simulação de validação de credenciais corporativas da rede VidaPlus
+        // Validação mockada simulando a checagem de credenciais no banco da VidaPlus
         if ("medico@vidaplus.com".equals(loginRequest.getUsuario()) && "senha123".equals(loginRequest.getSenha())) {
             resposta.put("status", "Autenticado com sucesso");
             resposta.put("usuario", loginRequest.getUsuario());
-            resposta.put("perfil", "ROLE_MEDICO");
-            // Token JWT simulado contendo a assinatura lúdica do sistema
+            resposta.put("perfil", "ROLE_MEDICO"); // Atribuição do perfil via RBAC
+            // Token estático gerado para fins de evidência no relatório do Projeto
             resposta.put("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.SGHSS_VIDAPLUS_MEDICO_TOKEN_EVIDENCIA");
 
             return new ResponseEntity<>(resposta, HttpStatus.OK);
@@ -38,7 +38,7 @@ public class AuthController {
             return new ResponseEntity<>(resposta, HttpStatus.OK);
         }
 
-        // Credenciais inválidas
+        // Credenciais inválidas. Retorna HTTP 401 caso o login falhe
         resposta.put("erro", "Usuário ou senha inválidos no sistema central da VidaPlus");
         return new ResponseEntity<>(resposta, HttpStatus.UNAUTHORIZED);// 401 Unauthorized
     }

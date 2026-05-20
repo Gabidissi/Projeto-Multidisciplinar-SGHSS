@@ -14,13 +14,16 @@ public class ConsultaService {
     private ConsultaRepository consultaRepository;
 
     public Consulta agendarConsulta(Consulta consulta) {
+        // Define o status inicial do agendamento
         consulta.setStatus("AGENDADA");
 
+        // Validação da regra do Hub de Telemedicina (Eixo Tecnológico do Estudo de Caso)
         if (Boolean.TRUE.equals(consulta.getTelemedicina())) {
+            // Gera um token aleatório com UUID de 8 caracteres para simular o link da sala virtual
             String tokenSala = UUID.randomUUID().toString().substring(0, 8);
             consulta.setUrlSalaVirtual("https://telemed.vidaplus.com.br/sala/v1-" + tokenSala);
         } else {
-            consulta.setUrlSalaVirtual("ATENDIMENTO_PRESENCIAL");
+            consulta.setUrlSalaVirtual("ATENDIMENTO_PRESENCIAL"); // Caso seja consulta física, não gera link de sala
         }
 
         return consultaRepository.save(consulta);

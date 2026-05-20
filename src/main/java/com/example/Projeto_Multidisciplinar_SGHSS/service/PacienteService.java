@@ -20,19 +20,20 @@ public class PacienteService {
     private LogAuditoriaRepository logRepository;
 
     public Paciente salvarPaciente(Paciente paciente, String cpfOriginal) {
-        // Criptografia em Base64 para proteção de dados sensíveis na persistência (Compliance LGPD - RNF001)
+        // Regra de Negócio: Codifica o CPF em Base64 antes de persistir no H2 (Camada de Segurança)
         String hashCpf = Base64.getEncoder().encodeToString(cpfOriginal.getBytes());
         paciente.setCpfCriptografado(hashCpf);
 
+        // Salva o paciente unificado na base da VidaPlus
         Paciente salvo = pacienteRepository.save(paciente);
 
-        // Automação de Rastreabilidade (RNF002) - Injeção síncrona obrigatória de Log de Auditoria
+        // RNF002 - Sistema gera o rastro de auditoria automaticamente após salvar
         LogAuditoria log = new LogAuditoria();
-        log.setTxUsuario("MEDICO_SISTEMA"); // Simulação do contexto do usuário autenticado
+        log.setTxUsuario("MEDICO_SISTEMA"); // Simulação do usuário logado na sessão
         log.setTxOperacao("CREATE_PACIENTE");
-        log.setDataHoraOperacao(LocalDateTime.now());
+        log.setDataHoraOperacao(LocalDateTime.now()); // Pega o timestamp atual do servidor
         log.setIdRegistroAfetado(salvo.getId());
-        logRepository.save(log);
+        logRepository.save(log); // Grava o log na tabela de auditoria
 
         return salvo;
     }
