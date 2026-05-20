@@ -23,7 +23,7 @@ public class Consulta {
 
     private String status;
 
-    @JsonProperty("eTelemedicina") // Força o Spring a entender o padrão exato enviado no JSON
+    @JsonProperty("eTelemedicina")
     @Column(name = "e_telemedicina")
     private Boolean telemedicina;
 
